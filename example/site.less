@@ -1,0 +1,110 @@
+#calendar-container {
+	width: 500px;
+		
+	#dayName {
+		text-align: left;
+		font-family: "Droid Sans", sans-serif;
+		font-weight: 700;
+		font-size: 1.2em;
+	}
+
+	#monthName {
+		text-align: left;
+		font-family: "Droid Sans", sans-serif;
+		font-weight: 700;
+		font-size: 2.5em;
+		position: relative;
+		top: .25em;
+	}
+
+	#day {
+		text-align:right;
+		float: right;
+		font-family: "Droid Sans", sans-serif;
+		font-weight: 700;
+		font-size: 5.5em;
+		position: relative;
+		top: -.25em;
+		margin-bottom: .15em;
+	}
+
+	a.lastMonth {
+		float: left;
+	}
+
+	a.nextMonth {
+		float: left;
+		margin-left: 10px;
+	}
+
+	a.thisMonth {
+		float:right;
+	}
+
+	.right-border {
+		border: 1px solid black;
+	}
+
+	#calendar {
+		width: 100%;
+		td, th {
+			padding: 0px !important;
+			height: 25px;
+			width: 100%/7;
+			font-size: .9em !important;
+			text-align: center;
+			vertical-align: middle;	
+			border: 1px solid black;
+		}
+
+		}
+
+		.calendar-day {
+			cursor: pointer;
+
+			&:hover {
+				background-color: pink !important;
+				font-weight: bold;
+			}
+		}
+
+		.empty {
+			background-color: gray;
+			cursor: not-allowed;
+		}	
+		
+
+		.greenday {
+			color: white;
+			background-color: darkgreen;
+		}
+
+		.redday {
+			background-color: darkred;
+			color: white;
+		}
+
+		.yellowday {
+			background-color: yellow;
+		}
+
+		.today {
+			background-color: lightblue;
+		}
+
+		.future-day {
+			cursor: not-allowed;
+			background-color: lightgray;
+		}
+
+		.approved-day {
+			font-weight: bolder !important;
+			opacity: 0.4;
+		}
+
+		.selected {
+			background-color: lightyellow;
+			color: black;
+		}
+	}	
+}
