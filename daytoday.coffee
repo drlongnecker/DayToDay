@@ -49,7 +49,7 @@ class dayToDay
 		@element.empty()
 		
 		# TODO: abstract out the bootstrap, formatting, and other things.
-		if includeNavigation
+		if @includeNavigation
 			@lastMonthNav = $('<a>').text(@lastMonth.toString('MMM yyyy'))
 				.addClass('move-calendar lastMonth btn')
 				.prop('id', @lastMonth.toString('MM-dd-yyyy'))
