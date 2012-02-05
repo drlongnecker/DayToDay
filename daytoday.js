@@ -43,7 +43,7 @@
         console.log('emptying calendar');
       }
       this.element.empty();
-      if (includeNavigation) {
+      if (this.includeNavigation) {
         this.lastMonthNav = $('<a>').text(this.lastMonth.toString('MMM yyyy')).addClass('move-calendar lastMonth btn').prop('id', this.lastMonth.toString('MM-dd-yyyy')).prop('href', '#').prepend('<i class="icon-chevron-left" />&nbsp;');
         this.todayNav = $('<a>').text('Today').addClass('move-calendar thisMonth btn').prop('id', this.today.toString('MM-dd-yyyy')).prop('href', '#');
         this.nextMonthNav = $('<a>').text(this.nextMonth.toString('MMM yyyy')).addClass('move-calendar nextMonth btn').prop('id', nextMonth.toString('MM-dd-yyyy')).prop('href', '#').append('&nbsp;<i class="icon-chevron-right" />');
