@@ -3,6 +3,8 @@ DayToDay
 
 A simple calendar widget that allows day-by-day configuration.
 
+see it live! http://example.drlongnecker.com/daytoday/
+
 omg! another calendar?
 --
 
