@@ -20,10 +20,14 @@ class dayToDay
 
 	createCalendar = (options) ->
 		# using datejs
-		@options = options
+		@options = options ? {}
+		
 		@element = @options.container
+		throw { name: 'Error', message: '"container" not defined'} if not @element or @element is '' or not @element?
+		
 		@decorator = @options.dayDecorator
-		@selectedDate = @options.selectedDate
+		@selectedDate = @options.selectedDate ? Date.today()
+		
 		@events = @options.events
 		@debug = @options.debug
 		@includeNavigation = @options.includeNavigation

@@ -11,11 +11,17 @@
       createCalendar(this.options);
     }
     createCalendar = function(options) {
-      var week, weekday;
-      this.options = options;
+      var week, weekday, _ref;
+      this.options = options != null ? options : {};
       this.element = this.options.container;
+      if (!this.element || this.element === '' || !(this.element != null)) {
+        throw {
+          name: 'Error',
+          message: '"container" not defined'
+        };
+      }
       this.decorator = this.options.dayDecorator;
-      this.selectedDate = this.options.selectedDate;
+      this.selectedDate = (_ref = this.options.selectedDate) != null ? _ref : Date.today();
       this.events = this.options.events;
       this.debug = this.options.debug;
       this.includeNavigation = this.options.includeNavigation;
