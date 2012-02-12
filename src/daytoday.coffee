@@ -50,7 +50,7 @@ class dayToDay
 
 		# clear out the element holding the calendar
 		console.log 'emptying calendar' if @debug
-		@element.empty()
+		$('#calendar-inner-container').remove()
 		
 		# TODO: abstract out the bootstrap, formatting, and other things.
 		if @includeNavigation
@@ -126,10 +126,11 @@ class dayToDay
 				break
 
 		console.log 'adding calendar and controls to DOM' if @debug
+		@innerElement = $('<div id="calendar-inner-container">').append @dayNameOutput, @monthNameOutput, @dateOutput, @calendar
 		
-		@element.append @dayNameOutput, @monthNameOutput, @dateOutput, @calendar
 		
 		if @options.includeNavigation
-			@element.append @lastMonthNav, @todayNav, @nextMonthNav
+			@innerElement.append @lastMonthNav, @todayNav, @nextMonthNav
 		
+		@element.append @innerElement
 		console.log 'DONE!' if @debug

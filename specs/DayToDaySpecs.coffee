@@ -16,8 +16,11 @@ describe 'Creating a calendar with minimum options', ->
 	it 'should add the calendar to the specified element', ->
 		expect(container.html()).toContain '<table id="calendar">'
 	
-	it 'should empty the element of the original text', ->
-		expect(container.html()).not.toContain 'blahblahblah'
+	it 'should not empty the element of the original text', ->
+		expect(container.html()).toContain 'blahblahblah'
+
+	it 'should create an inner element to hold the calendar', ->
+		expect(container.html()).toContain '<div id="calendar-inner-container">'
 
 	it 'should contain the selected date specified', ->
 		expect(container.html()).toContain(selectedDate.getDate())
@@ -49,6 +52,9 @@ describe 'Creating a calendar without specify a selected date', ->
 		Application.dayToDay
 			container: container
 	
+	it 'should add the calendar to the specified element', ->
+		expect(container.html()).toContain '<table id="calendar">'
+	
 	it 'should default to today\'s day name', ->
 		expect(container.html()).toContain(expectedDayName)
 
@@ -57,4 +63,10 @@ describe 'Creating a calendar without specify a selected date', ->
 
 	it 'should default to today\'s day', ->
 		expect(container.html()).toContain(expectedDayNumber)
+
+	it 'should not empty the element of the original text', ->
+		expect(container.html()).toContain 'blahblahblah'
+	
+	it 'should create an inner element to hold the calendar', ->
+		expect(container.html()).toContain '<div id="calendar-inner-container">'
 

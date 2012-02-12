@@ -28,14 +28,17 @@
 		<p>Jasmine specs: <a href="../specs/specrunner.html">click here</a></p>
 		
 		<hr>
-		<h2 class="well">Current Date: <span id="current-date">1-1-2012</span></h2>
-		<div id="calendar-container" />
+		<h3 class="well">Current Date: <span id="current-date"></span></h3>
+		<div id="calendar-container">
+			<div class="alert alert-success">Elements inside the calendar container are not destroyed when a calendar is populated.</div>
+		</div>
 
 		<script src="lib/jquery-1.7.1.js"></script>
 		<script src="lib/date.js"></script>
 		<script src="../src/daytoday.js"></script>
 
 		<script>
+			$('#current-date').text(Date.today().toString('M-dd-yyyy'));
 			$(buildCalendar);
 
 			// EXAMPLE dayDecorator

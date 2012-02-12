@@ -16,8 +16,11 @@
     it('should add the calendar to the specified element', function() {
       return expect(container.html()).toContain('<table id="calendar">');
     });
-    it('should empty the element of the original text', function() {
-      return expect(container.html()).not.toContain('blahblahblah');
+    it('should not empty the element of the original text', function() {
+      return expect(container.html()).toContain('blahblahblah');
+    });
+    it('should create an inner element to hold the calendar', function() {
+      return expect(container.html()).toContain('<div id="calendar-inner-container">');
     });
     it('should contain the selected date specified', function() {
       return expect(container.html()).toContain(selectedDate.getDate());
@@ -53,14 +56,23 @@
         container: container
       });
     });
+    it('should add the calendar to the specified element', function() {
+      return expect(container.html()).toContain('<table id="calendar">');
+    });
     it('should default to today\'s day name', function() {
       return expect(container.html()).toContain(expectedDayName);
     });
     it('should default to today\'s month name', function() {
       return expect(container.html()).toContain(expectedMonthName);
     });
-    return it('should default to today\'s day', function() {
+    it('should default to today\'s day', function() {
       return expect(container.html()).toContain(expectedDayNumber);
+    });
+    it('should not empty the element of the original text', function() {
+      return expect(container.html()).toContain('blahblahblah');
+    });
+    return it('should create an inner element to hold the calendar', function() {
+      return expect(container.html()).toContain('<div id="calendar-inner-container">');
     });
   });
 }).call(this);

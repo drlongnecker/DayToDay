@@ -48,7 +48,7 @@
       if (this.debug) {
         console.log('emptying calendar');
       }
-      this.element.empty();
+      $('#calendar-inner-container').remove();
       if (this.includeNavigation) {
         this.lastMonthNav = $('<a>').text(this.lastMonth.toString('MMM yyyy')).addClass('move-calendar lastMonth btn').prop('id', this.lastMonth.toString('MM-dd-yyyy')).prop('href', '#').prepend('<i class="icon-chevron-left" />&nbsp;');
         this.todayNav = $('<a>').text('Today').addClass('move-calendar thisMonth btn').prop('id', this.today.toString('MM-dd-yyyy')).prop('href', '#');
@@ -121,10 +121,11 @@
       if (this.debug) {
         console.log('adding calendar and controls to DOM');
       }
-      this.element.append(this.dayNameOutput, this.monthNameOutput, this.dateOutput, this.calendar);
+      this.innerElement = $('<div id="calendar-inner-container">').append(this.dayNameOutput, this.monthNameOutput, this.dateOutput, this.calendar);
       if (this.options.includeNavigation) {
-        this.element.append(this.lastMonthNav, this.todayNav, this.nextMonthNav);
+        this.innerElement.append(this.lastMonthNav, this.todayNav, this.nextMonthNav);
       }
+      this.element.append(this.innerElement);
       if (this.debug) {
         return console.log('DONE!');
       }
