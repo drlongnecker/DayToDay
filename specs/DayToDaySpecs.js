@@ -31,8 +31,11 @@
     it('should contain the specified month name', function() {
       return expect(container.html()).toContain(expectedMonthName);
     });
-    return it('should contain the specified day', function() {
+    it('should contain the specified day', function() {
       return expect(container.html()).toContain(expectedDayNumber);
+    });
+    return it('should contain the week number for the first week', function() {
+      return expect(container.html()).toContain('<tr class="calendar-week" id="1">');
     });
   });
   describe('Creating a calendar without specifying any options', function() {
@@ -45,11 +48,13 @@
     });
   });
   describe('Creating a calendar without specify a selected date', function() {
-    var container, expectedDayName, expectedDayNumber, expectedMonthName;
+    var container, expectedDayName, expectedDayNumber, expectedFirstWeek, expectedMonthName, expectedSecondWeek;
     container = null;
     expectedDayName = '<div id="dayName">' + Date.today().getDayName() + '</div>';
     expectedMonthName = '<div id="monthName">' + Date.today().getMonthName() + '</div>';
     expectedDayNumber = '<div id="day">' + Date.today().getDate() + '</div>';
+    expectedFirstWeek = '<tr class="calendar-week" id="' + Date.today().monday().getWeekOfYear() + '">';
+    expectedSecondWeek = '<tr class="calendar-week" id="' + (Date.today().monday().getWeekOfYear() + 1) + '">';
     beforeEach(function() {
       container = $('<div id="calendar-container">blahblahblah</div>');
       return Application.dayToDay({
@@ -71,8 +76,14 @@
     it('should not empty the element of the original text', function() {
       return expect(container.html()).toContain('blahblahblah');
     });
-    return it('should create an inner element to hold the calendar', function() {
+    it('should create an inner element to hold the calendar', function() {
       return expect(container.html()).toContain('<div id="calendar-inner-container">');
+    });
+    it('should contain the week number for the first week', function() {
+      return expect(container.html()).toContain(expectedFirstWeek);
+    });
+    return it('should contain the week number for the second week', function() {
+      return expect(container.html()).toContain(expectedSecondWeek);
     });
   });
 }).call(this);

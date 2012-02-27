@@ -97,18 +97,21 @@ class dayToDay
 		
 		@dayIncremental = 1
 		console.log 'adding weeks...' if @debug
+		
 		for week in [0..6]
-			console.log " week #{week}" if @debug
-			@weekRow = $('<tr>').addClass('calendar-week')
+			weekOfYear = @selectedDate.clone().monday().getWeekOfYear() + week
+			console.log " week #{week} - week of year #{weekOfYear}" if @debug
+			@weekRow = $('<tr>').addClass('calendar-week').prop('id', weekOfYear)
+			
 			for weekday in [0..6]
-				@daybox = $('<td>')
+				@daybox = $('<td>')			
 				if (@dayIncremental <= @selectedDate.getDaysInMonth() and (week > 0 || weekday >= @startingDay))
 					console.log "  adding day #{@dayIncremental}" if @debug
 
 					@calendarDayId = (@selectedDate.getMonth() + 1) + '-' + dayIncremental + '-' + @selectedDate.getFullYear()
 					console.log "   setting calendarDayId : #{@calendarDayId}" if @debug
 					if Date.parse(@calendarDayId) <= @today
-						daybox.addClass('calendar-day').text(dayIncremental).prop('id', @calendarDayId)	
+						daybox.addClass('calendar-day').text(dayIncremental).prop('id', @calendarDayId)
 						@decorator? @daybox, @dayIncremental, @events
 					else
 						daybox.addClass('future-day').text(@dayIncremental).prop('id', @calendarDayId)
@@ -117,7 +120,7 @@ class dayToDay
 					@dayIncremental++
 				else
 					@weekRow.append @daybox.addClass('empty')
-			console.log " week #{@week} complete" if @debug
+			console.log " week #{week} complete" if @debug
 			@calendar.append @weekRow
 
 			if @dayIncremental > @selectedDate.getDaysInMonth()

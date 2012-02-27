@@ -11,7 +11,7 @@
       createCalendar(this.options);
     }
     createCalendar = function(options) {
-      var week, weekday, _ref;
+      var week, weekOfYear, weekday, _ref;
       this.options = options != null ? options : {};
       this.element = this.options.container;
       if (!this.element || this.element === '' || !(this.element != null)) {
@@ -78,10 +78,11 @@
         console.log('adding weeks...');
       }
       for (week = 0; week <= 6; week++) {
+        weekOfYear = this.selectedDate.clone().monday().getWeekOfYear() + week;
         if (this.debug) {
-          console.log(" week " + week);
+          console.log(" week " + week + " - week of year " + weekOfYear);
         }
-        this.weekRow = $('<tr>').addClass('calendar-week');
+        this.weekRow = $('<tr>').addClass('calendar-week').prop('id', weekOfYear);
         for (weekday = 0; weekday <= 6; weekday++) {
           this.daybox = $('<td>');
           if (this.dayIncremental <= this.selectedDate.getDaysInMonth() && (week > 0 || weekday >= this.startingDay)) {
@@ -107,7 +108,7 @@
           }
         }
         if (this.debug) {
-          console.log(" week " + this.week + " complete");
+          console.log(" week " + week + " complete");
         }
         this.calendar.append(this.weekRow);
         if (this.dayIncremental > this.selectedDate.getDaysInMonth()) {

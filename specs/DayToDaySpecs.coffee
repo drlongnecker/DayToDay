@@ -23,16 +23,19 @@ describe 'Creating a calendar with minimum options', ->
 		expect(container.html()).toContain '<div id="calendar-inner-container">'
 
 	it 'should contain the selected date specified', ->
-		expect(container.html()).toContain(selectedDate.getDate())
+		expect(container.html()).toContain selectedDate.getDate()
 
 	it 'should contain the specified day name', ->
-		expect(container.html()).toContain(expectedDayName)
+		expect(container.html()).toContain expectedDayName
 
 	it 'should contain the specified month name', ->
-		expect(container.html()).toContain(expectedMonthName)
+		expect(container.html()).toContain expectedMonthName
 
 	it 'should contain the specified day', ->
-		expect(container.html()).toContain(expectedDayNumber)
+		expect(container.html()).toContain expectedDayNumber
+
+	it 'should contain the week number for the first week', ->
+		expect(container.html()).toContain '<tr class="calendar-week" id="1">'
 
 describe 'Creating a calendar without specifying any options', ->
 	calendar = null
@@ -45,6 +48,8 @@ describe 'Creating a calendar without specify a selected date', ->
 	expectedDayName = '<div id="dayName">'+ Date.today().getDayName() + '</div>'
 	expectedMonthName = '<div id="monthName">'+ Date.today().getMonthName() + '</div>'
 	expectedDayNumber = '<div id="day">'+ Date.today().getDate() + '</div>'
+	expectedFirstWeek = '<tr class="calendar-week" id="' + Date.today().monday().getWeekOfYear() + '">'
+	expectedSecondWeek = '<tr class="calendar-week" id="' + (Date.today().monday().getWeekOfYear() + 1) + '">'
 
 	beforeEach ->
 		container = $('<div id="calendar-container">blahblahblah</div>')
@@ -56,13 +61,13 @@ describe 'Creating a calendar without specify a selected date', ->
 		expect(container.html()).toContain '<table id="calendar">'
 	
 	it 'should default to today\'s day name', ->
-		expect(container.html()).toContain(expectedDayName)
+		expect(container.html()).toContain expectedDayName
 
 	it 'should default to today\'s month name', ->
-		expect(container.html()).toContain(expectedMonthName)
+		expect(container.html()).toContain expectedMonthName
 
 	it 'should default to today\'s day', ->
-		expect(container.html()).toContain(expectedDayNumber)
+		expect(container.html()).toContain expectedDayNumber
 
 	it 'should not empty the element of the original text', ->
 		expect(container.html()).toContain 'blahblahblah'
@@ -70,3 +75,8 @@ describe 'Creating a calendar without specify a selected date', ->
 	it 'should create an inner element to hold the calendar', ->
 		expect(container.html()).toContain '<div id="calendar-inner-container">'
 
+	it 'should contain the week number for the first week', ->
+		expect(container.html()).toContain expectedFirstWeek
+	
+	it 'should contain the week number for the second week', ->
+		expect(container.html()).toContain expectedSecondWeek
