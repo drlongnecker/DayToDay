@@ -1,0 +1,1 @@
+gci -Recurse -Filter *.coffee | %{ coffee --compile $_.FullName }
